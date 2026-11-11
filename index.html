@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090707">
+<title>ROMINA | The Collection ❤️‍🔥</title>
+
+<style>
+:root {
+    --red: #a31632;
+    --wine: #5e1025;
+    --gold: #d6b477;
+    --bg: #090707;
+    --white: #f7f0ef;
+    --muted: #b5a6a6;
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+button { font: inherit; cursor: pointer; }
+
+/* INTRO */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: #050404;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 1.3s, visibility 1.3s;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.logo-button {
+    background: none;
+    border: 0;
+    color: var(--red);
+    font-family: Georgia, serif;
+    font-size: 150px;
+    font-weight: bold;
+    text-shadow: 0 0 35px #a3163277;
+    animation: aparecer 2s ease;
+    transition: transform .7s;
+}
+
+.logo-button:hover { transform: scale(1.1); }
+
+.intro-caption {
+    margin-top: 15px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* APP */
+
+#app {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.4s;
+}
+
+#app.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* HEADER */
+
+header {
+    height: 65px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    gap: 30px;
+    background: linear-gradient(#000d, transparent);
+}
+
+.brand {
+    color: var(--red);
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+}
+
+nav a {
+    color: #eee;
+    text-decoration: none;
+}
+
+nav a:hover { color: var(--gold); }
+
+.profile {
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, var(--red), #260b15);
+    display: grid;
+    place-items: center;
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 590px;
+    height: 78vh;
+    max-height: 760px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5% 95px;
+    overflow: hidden;
+    background: #211017;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("fotos/foto1.jpg");
+    background-size: cover;
+    background-position: center 30%;
+    transition: opacity 1s, transform 1.5s;
+}
+
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, #090707 0%, #090707dd 25%, #09070725 85%),
+        linear-gradient(0deg, #090707 0%, transparent 65%);
+}
+
+.hero-bg.fade-out {
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 570px;
+    opacity: 0;
+}
+
+.hero-content.animate-in {
+    animation: rise 1.2s ease forwards;
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(48px, 9vw, 85px);
+    line-height: .95;
+    margin: 0 0 17px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.meta {
+    color: #ddd;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.match {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #e5dddd;
+    max-width: 490px;
+    margin: 0 0 23px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action {
+    border: 0;
+    border-radius: 3px;
+    padding: 13px 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: .4s;
+}
+
+.play {
+    background: var(--gold);
+    color: #160b0e;
+}
+
+.more {
+    background: #ffffff30;
+    color: white;
+    backdrop-filter: blur(8px);
+}
+
+.action:hover {
+    transform: translateY(-3px);
+    filter: brightness(.85);
+}
+
+/* DOTS */
+
+.dots {
+    position: absolute;
+    right: 5%;
+    bottom: 105px;
+    display: flex;
+    gap: 7px;
+    z-index: 2;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border: 0;
+    border-radius: 50%;
+    background: #777;
+    padding: 0;
+    transition: .5s;
+}
+
+.dot.active {
+    background: var(--gold);
+    width: 22px;
+    border-radius: 8px;
+}
+
+/* CATALOGOS */
+
+main {
+    position: relative;
+    margin-top: -30px;
+    z-index: 2;
+    padding-bottom: 55px;
+}
+
+.shelf {
+    padding: 0 5%;
+    margin-bottom: 35px;
+}
+
+.shelf h2 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 21px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.card {
+    min-width: 0;
+    border: 1px solid #ffffff0d;
+    padding: 0;
+    text-align: left;
+    background: #171010;
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: .6s;
+}
+
+.card:hover {
+    transform: scale(1.035);
+    box-shadow: 0 10px 35px #000b;
+    border-color: #a3163266;
+}
+
+.poster {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #25151b;
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1s;
+}
+
+.card:hover .poster img { transform: scale(1.08); }
+
+.card-copy { padding: 12px; }
+
+.card-title {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.card-sub {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.progress {
+    height: 3px;
+    background: #444;
+    margin-top: 10px;
+}
+
+.progress i {
+    display: block;
+    height: 100%;
+    background: var(--red);
+}
+
+/* FINAL */
+
+.final {
+    padding: 60px 5%;
+    text-align: center;
+    border-top: 1px solid #302026;
+}
+
+.final h2 {
+    font-family: Georgia, serif;
+    color: var(--gold);
+    font-weight: normal;
+    font-size: 32px;
+}
+
+.final p {
+    max-width: 550px;
+    margin: 20px auto;
+    color: #cbbebe;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.signature {
+    color: var(--red);
+    font-family: Georgia, serif;
+    font-size: 23px;
+    margin-top: 25px;
+}
+
+footer {
+    border-top: 1px solid #302026;
+    padding: 28px 5%;
+    color: #76696b;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: #000e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .6s, visibility .6s;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-box {
+    width: min(650px, 100%);
+    max-height: 92vh;
+    background: #181010;
+    border-radius: 8px;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform .6s;
+}
+
+.modal.open .modal-box { transform: translateY(0); }
+
+.modal-art {
+    position: relative;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-art img {
+    width: 100%;
+    height: auto;
+    max-height: 65vh;
+    object-fit: contain;
+    display: block;
+}
+
+.close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    border: 0;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background: #111d;
+    color: white;
+    font-size: 23px;
+}
+
+.close:hover { background: var(--red); }
+
+.modal-body { padding: 23px; }
+
+.modal-body h2 {
+    font-family: Georgia, serif;
+    color: var(--gold);
+    font-weight: normal;
+    margin: 0 0 13px;
+    font-size: 26px;
+}
+
+.modal-body p {
+    color: #ddd;
+    line-height: 1.8;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 650px) {
+    header {
+        height: 56px;
+        padding: 0 18px;
+        gap: 16px;
+    }
+
+    .brand { font-size: 26px; }
+
+    nav {
+        gap: 12px;
+        font-size: 10px;
+    }
+
+    .hero {
+        height: 73vh;
+        min-height: 560px;
+        padding: 0 20px 82px;
+    }
+
+    .hero-bg::after {
+        background:
+            linear-gradient(0deg, #090707 0%, #090707dc 35%, #09070720 100%);
+    }
+
+    .hero h1 { font-size: 48px; }
+
+    .hero p { font-size: 14px; }
+
+    .dots {
+        right: 20px;
+        bottom: 45px;
+    }
+
+    .shelf {
+        padding: 0 18px;
+        margin-bottom: 27px;
+    }
+
+    .shelf h2 { font-size: 18px; }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    main { margin-top: -18px; }
+}
+
+@media(max-width: 360px) {
+    nav { gap: 8px; font-size: 9px; }
+    .hero h1 { font-size: 39px; }
+    .action { padding: 11px 13px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section id="intro">
+    <button class="logo-button" id="enter" aria-label="Entrar">R</button>
+    <div class="intro-caption">Una colección especial · Romina</div>
+</section>
+
+<div id="app">
+
+<header>
+    <div class="brand">R.</div>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#momentos">Momentos</a>
+    </nav>
+    <div class="profile">♥</div>
+</header>
+
+<section class="hero" id="inicio">
+    <div class="hero-bg" id="heroBg"></div>
+
+    <div class="hero-content" id="heroContent">
+        <div class="eyebrow" id="eyebrow">The exclusive collection</div>
+        <h1 id="heroTitle">ROMINA</h1>
+
+        <div class="meta">
+            <span class="match">♥ 100% Encanto</span>
+            &nbsp; 2026 &nbsp; Belleza · Elegancia
+        </div>
+
+        <p id="heroText">
+            Hay mujeres que llaman la atención y otras que simplemente
+            dejan huella. Romina tiene esa combinación de belleza,
+            actitud y encanto que resulta imposible ignorar.
+        </p>
+
+        <div class="actions">
+            <button class="action play" id="playBtn">♥ Ver colección</button>
+            <button class="action more" id="moreBtn">ⓘ Sobre Romina</button>
+        </div>
+    </div>
+
+    <div class="dots" id="dots"></div>
+</section>
+
+<main>
+
+<section class="shelf" id="coleccion">
+    <h2>♥ La belleza de Romina</h2>
+    <div class="cards" id="cards1"></div>
+</section>
+
+<section class="shelf" id="momentos">
+    <h2>✨ Una presencia inolvidable</h2>
+    <div class="cards" id="cards2"></div>
+</section>
+
+</main>
+
+<section class="final">
+    <h2>Una belleza que no necesita presentación</h2>
+
+    <p>
+        Romina tiene ese encanto que no se explica fácilmente.
+        Una combinación de elegancia, sensualidad y personalidad
+        que hace que cada fotografía tenga algo especial.
+
+        <br><br>
+
+        Su sonrisa, su mirada, su estilo y esa manera tan propia
+        de destacar hacen que sea imposible confundirla con alguien más.
+
+        <br><br>
+
+        Porque la belleza no siempre necesita palabras...
+        aunque algunas personas merecen todos los halagos.
+    </p>
+
+    <div class="signature">Con admiración, para Romina. ♥</div>
+</section>
+
+<footer>
+    ROMINA · THE EXCLUSIVE COLLECTION
+    <br>
+    Una edición especial. ❤️‍🔥
+</footer>
+
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+        <div class="modal-art">
+            <img id="modalImg" src="fotos/foto1.jpg" alt="Fotografía de Romina">
+            <button class="close" id="closeModal">×</button>
+        </div>
+        <div class="modal-body">
+            <h2 id="modalTitle"></h2>
+            <p id="modalText"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+
+/* DIAPOSITIVAS */
+
+const slides = [
+    {
+        eyebrow: "The exclusive collection",
+        title: "ROMINA",
+        text: "Hay mujeres que llaman la atención y otras que simplemente dejan huella. Romina tiene esa combinación de belleza, actitud y encanto que resulta imposible ignorar.",
+        photo: "foto1.jpg"
+    },
+    {
+        eyebrow: "Chapter 01 · Elegance",
+        title: "Belleza natural",
+        text: "No hace falta demasiado para destacar cuando la belleza, la actitud y el estilo hablan por sí solos.",
+        photo: "foto2.jpg"
+    },
+    {
+        eyebrow: "Chapter 02 · Confidence",
+        title: "Una mirada única",
+        text: "Hay detalles que se quedan en la memoria. Una mirada, una sonrisa y esa confianza que convierte cualquier momento en algo especial.",
+        photo: "foto3.jpg"
+    },
+    {
+        eyebrow: "Coming soon",
+        title: "Simplemente Romina",
+        text: "Elegante, atractiva y con una personalidad propia. Algunas personas tienen algo que las hace inolvidables.",
+        photo: "foto4.jpg"
+    }
+];
+
+let current = 0;
+let timer = null;
+let bgTimer = null;
+
+const $ = id => document.getElementById(id);
+
+function renderSlide(i) {
+    current = i;
+    const s = slides[i];
+
+    $("eyebrow").textContent = s.eyebrow;
+    $("heroTitle").textContent = s.title;
+    $("heroText").textContent = s.text;
+
+    const bg = $("heroBg");
+
+    clearTimeout(bgTimer);
+    bg.classList.add("fade-out");
+
+    bgTimer = setTimeout(() => {
+        bg.style.backgroundImage = `url("fotos/${s.photo}")`;
+        bg.classList.remove("fade-out");
+    }, 500);
+
+    const content = $("heroContent");
+    content.classList.remove("animate-in");
+    void content.offsetWidth;
+    content.classList.add("animate-in");
+
+    $("dots").innerHTML = slides.map((_, n) => `
+        <button class="dot ${n === i ? "active" : ""}"
+        aria-label="Diapositiva ${n+1}"
+        data-slide="${n}"></button>
+    `).join("");
+}
+
+$("dots").addEventListener("click", event => {
+    const button = event.target.closest("[data-slide]");
+    if (!button) return;
+    renderSlide(Number(button.dataset.slide));
+    restart();
+});
+
+function restart() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        renderSlide((current + 1) % slides.length);
+    }, 8000);
+}
+
+/* ENTRADA */
+
+$("enter").addEventListener("click", () => {
+    $("intro").classList.add("hide");
+    $("app").classList.add("show");
+    renderSlide(0);
+    restart();
+});
+
+/* COLECCIÓN DE FOTOGRAFÍAS */
+
+const recuerdos = [
+    {
+        photo: "foto1.jpg",
+        title: "Belleza natural",
+        subtitle: "Un encanto especial",
+        desc: "Hay personas que tienen una belleza que no necesita demasiados adornos. Romina tiene esa capacidad de destacar con naturalidad y hacer que cada imagen tenga algo especial."
+    },
+    {
+        photo: "foto2.jpg",
+        title: "Elegancia",
+        subtitle: "Estilo propio",
+        desc: "La elegancia está en los detalles, en la actitud y en la forma de llevar cada estilo. Romina tiene una presencia que no pasa desapercibida."
+    },
+    {
+        photo: "foto3.jpg",
+        title: "Una mirada",
+        subtitle: "Difícil de olvidar",
+        desc: "Hay miradas que dicen mucho sin necesidad de palabras. Un detalle que puede convertir una fotografía sencilla en un recuerdo especial."
+    },
+    {
+        photo: "foto4.jpg",
+        title: "Actitud",
+        subtitle: "Confianza y personalidad",
+        desc: "La confianza tiene su propio atractivo. Esa manera de ser auténtica y sentirse cómoda con uno mismo es parte de lo que hace especial a una persona."
+    },
+    {
+        photo: "foto5.jpg",
+        title: "Sensualidad",
+        subtitle: "Sutileza y encanto",
+        desc: "La sensualidad también está en la elegancia, los gestos y la actitud. No necesita exageraciones para transmitir encanto."
+    },
+    {
+        photo: "foto6.jpg",
+        title: "Su sonrisa",
+        subtitle: "Un detalle especial",
+        desc: "Una sonrisa puede cambiar completamente una fotografía. Es uno de esos detalles que hacen que una persona se vea todavía más encantadora."
+    },
+    {
+        photo: "foto7.jpg",
+        title: "Personalidad",
+        subtitle: "Única e irrepetible",
+        desc: "Más allá de una fotografía, lo que hace especial a alguien es su personalidad. Esa combinación de carácter, estilo y autenticidad."
+    },
+    {
+        photo: "foto8.jpg",
+        title: "La edición especial",
+        subtitle: "Siempre Romina",
+        desc: "Una colección dedicada a alguien que tiene una manera muy propia de destacar. Porque algunas personas simplemente merecen una edición especial."
+    }
+];
+
+function crearTarjeta(r, porcentaje) {
+    const index = recuerdos.indexOf(r);
+
+    return `
+        <button class="card" data-index="${index}">
+            <div class="poster">
+                <img src="fotos/${r.photo}"
+                alt="${r.title}" loading="lazy">
+            </div>
+            <div class="card-copy">
+                <div class="card-title">${r.title}</div>
+                <div class="card-sub">${r.subtitle}</div>
+                <div class="progress">
+                    <i style="width:${porcentaje}%"></i>
+                </div>
+            </div>
+        </button>
+    `;
+}
+
+$("cards1").innerHTML = recuerdos.slice(0, 4)
+    .map((r, i) => crearTarjeta(r, 100 - i * 12)).join("");
+
+$("cards2").innerHTML = recuerdos.slice(4, 8)
+    .map((r, i) => crearTarjeta(r, 100 - i * 12)).join("");
+
+/* VENTANAS DE FOTOGRAFÍAS */
+
+function openModal(title, desc, photo) {
+    $("modalTitle").textContent = title;
+    $("modalText").textContent = desc;
+    $("modalImg").src = "fotos/" + photo;
+    $("modal").classList.add("open");
+}
+
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        const r = recuerdos[Number(card.dataset.index)];
+        openModal(r.title, r.desc, r.photo);
+    });
+});
+
+function closeModal() {
+    $("modal").classList.remove("open");
+}
+
+$("closeModal").addEventListener("click", closeModal);
+
+$("modal").addEventListener("click", event => {
+    if (event.target === $("modal")) closeModal();
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+});
+
+/* BOTONES */
+
+$("playBtn").addEventListener("click", () => {
+    openModal(
+        "La colección de Romina",
+        "Una selección de fotografías para celebrar su belleza, su estilo y ese encanto tan particular que la caracteriza.",
+        "foto1.jpg"
+    );
+});
+
+$("moreBtn").addEventListener("click", () => {
+    openModal(
+        "Sobre Romina",
+        "Protagonista: Romina. Género: belleza, elegancia y sensualidad. Característica principal: una presencia que no pasa desapercibida. Edición: exclusiva. ❤️‍🔥",
+        "foto1.jpg"
+    );
+});
+
+</script>
+</body>
+</html>
+
+IMPORTANTE: Crea una carpeta llamada "fotos" en la misma ubicación que el archivo HTML y coloca dentro las fotografías con estos nombres:
+
+- foto1.jpg
+- foto2.jpg
+- foto3.jpg
+- foto4.jpg
+- foto5.jpg
+- foto6.jpg
+- foto7.jpg
+- foto8.jpg
+
+La "foto1.jpg" será la portada principal de Romina.
+
+Puedes cambiar las fotografías sin modificar el código, simplemente reemplazando los archivos por otros con los mismos nombres.
